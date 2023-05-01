@@ -35,21 +35,21 @@ build:
 	@$(call msg, Building Docker image ${DOCKER_IMAGE_NAME} ...)
 	@docker build --rm . -t ${DOCKER_IMAGE_NAME}
 	
-train: build
+train: build 
 	@$(call msg, Training the maskrcnn-resnet50-fpn model  ...)
 	@mkdir -p ./maskrcnn-ws
-	@docker run ${DOCKER_RUN_PARAMS} bash
+	@docker run ${DOCKER_RUN_PARAMS} ./train.sh
 
 
-quantize: build
+quantize: build 
 	@$(call msg, Quantizing the maskrcnn-resnet50-fpn model  ...)
 	@mkdir -p ./maskrcnn-ws
-	@docker run ${DOCKER_RUN_PARAMS} bash
+	@docker run ${DOCKER_RUN_PARAMS} ./quantize.sh
 
-export: build
-	@$(call msg, Exporting the maskrcnn-resnet50-fpn model  ...)
+ir: build 
+	@$(call msg, Converting the maskrcnn-resnet50-fpn model to ir ...)
 	@mkdir -p ${CURRENT_DIR}/models
-	@docker run ${DOCKER_RUN_PARAMS} bash
+	@docker run ${DOCKER_RUN_PARAMS} ./export.sh
 
 test: build
 	@$(call msg, Testing the maskrcnn-resnet50-fpn model  ...)
@@ -59,6 +59,10 @@ test: build
 monitor:
 	@$(call msg, Monitoring ...)
 	@tensorboard --logdir=${CURRENT_DIR}/maskrcnn-ws/logs/tf_logs/ --bind_all
+
+clean:
+	@$(call msg, Cleaning ...)
+	@sudo rm -rf ./maskrcnn-ws/logs
 	
 #----------------------------------------------------------------------------------------------------------------------
 # helper functions
