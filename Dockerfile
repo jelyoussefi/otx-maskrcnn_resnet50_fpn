@@ -20,7 +20,9 @@ RUN git clone https://github.com/openvinotoolkit/training_extensions.git && \
 	cd training_extensions && git checkout develop && \
 	cd otx/algorithms/detection/configs/instance_segmentation/resnet50_maskrcnn && \
 		 find . -name "*" -type f -exec sed -i 's/800/640/g' {} \; && \
-		 find . -name "*" -type f -exec sed -i 's/1344/640/g' {} \;
+		 find . -name "*" -type f -exec sed -i 's/1344/640/g' {} \; && \
+		 sed -i 's/load_from = .*/load_from = "https:\/\/download.pytorch.org\/models\/maskrcnn_resnet50_fpn_coco-bf2d0c1e.pt"/' model.py
+		 
 WORKDIR /tmp/training_extensions
  
 RUN pip3 install -e .[full] 

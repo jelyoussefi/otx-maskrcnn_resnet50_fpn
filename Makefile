@@ -14,7 +14,6 @@ export DOCKER_BUILDKIT=1
 DOCKER_RUN_PARAMS= \
 	-it --rm -a stdout -a stderr -e DISPLAY=${DISPLAY} -e NO_AT_BRIDGE=1  \
 	--device /dev/dri \
-	--gpus all \
 	-v ${CURRENT_DIR}/dataset:/workspace/dataset \
 	-v ${CURRENT_DIR}/maskrcnn-ws:/workspace/maskrcnn-ws \
 	-v ${CURRENT_DIR}/models:/workspace/models \
@@ -38,7 +37,7 @@ build:
 train: build 
 	@$(call msg, Training the maskrcnn-resnet50-fpn model  ...)
 	@mkdir -p ./maskrcnn-ws
-	@docker run ${DOCKER_RUN_PARAMS} ./train.sh
+	@docker run ${DOCKER_RUN_PARAMS} bash ./train.sh
 
 
 quantize: build 
