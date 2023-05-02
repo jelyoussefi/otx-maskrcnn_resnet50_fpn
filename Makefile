@@ -14,6 +14,7 @@ export DOCKER_BUILDKIT=1
 DOCKER_RUN_PARAMS= \
 	-it --rm -a stdout -a stderr -e DISPLAY=${DISPLAY} -e NO_AT_BRIDGE=1  \
 	--device /dev/dri \
+	--gpus all \
 	-v ${CURRENT_DIR}/dataset:/workspace/dataset \
 	-v ${CURRENT_DIR}/maskrcnn-ws:/workspace/maskrcnn-ws \
 	-v ${CURRENT_DIR}/models:/workspace/models \
@@ -43,12 +44,12 @@ train: build
 quantize: build 
 	@$(call msg, Quantizing the maskrcnn-resnet50-fpn model  ...)
 	@mkdir -p ./maskrcnn-ws
-	@docker run ${DOCKER_RUN_PARAMS} ./quantize.sh
+	@docker run ${DOCKER_RUN_PARAMS} bash
 
 ir: build 
 	@$(call msg, Converting the maskrcnn-resnet50-fpn model to ir ...)
 	@mkdir -p ${CURRENT_DIR}/models
-	@docker run ${DOCKER_RUN_PARAMS} ./export.sh
+	@docker run ${DOCKER_RUN_PARAMS} bash ./export.sh
 
 test: build
 	@$(call msg, Testing the maskrcnn-resnet50-fpn model  ...)

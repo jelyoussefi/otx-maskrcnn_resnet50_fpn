@@ -3,7 +3,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 USER root
 RUN apt update -y
-RUN apt install -y wget software-properties-common python3-dev libgl1 libglib2.0-0  libx11-dev  python3-tk python3-opencv 
+RUN apt install -y wget software-properties-common python3-dev libgl1 libglib2.0-0  python3-tk python3-opencv 
 
 # Installing cuda
 RUN wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-ubuntu2004.pin
@@ -17,10 +17,7 @@ RUN pip3 install torch==1.13.1+cu116 torchvision==0.14.1+cu116 -f https://downlo
 # Installing otx
 WORKDIR /tmp 
 RUN git clone https://github.com/openvinotoolkit/training_extensions.git && \
-	cd training_extensions && git checkout develop && \
-	cd otx/algorithms/detection/configs/instance_segmentation/resnet50_maskrcnn && \
-		 find . -name "*" -type f -exec sed -i 's/800/640/g' {} \; && \
-		 find . -name "*" -type f -exec sed -i 's/1344/640/g' {} \;
+	cd training_extensions && git checkout 63d9d7a8b3b0ae2e339a9806ba76a9d05d3c1c63 
 		 
 WORKDIR /tmp/training_extensions
  
@@ -29,7 +26,7 @@ RUN pip3 install -e .[full]
 RUN mkdir -p  /workspace/
 WORKDIR /workspace 
 
-COPY build.sh train.sh export.sh quantize.sh test.sh /workspace
+COPY build.sh train.sh  optimize.sh export.sh  quantize.sh test.sh /workspace
 
 
 

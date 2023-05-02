@@ -1,4 +1,7 @@
 pip3 install mmcv-full==1.7.1
+
+./build.sh
+
 otx_train Custom_Counting_Instance_Segmentation_MaskRCNN_ResNet50 \
 	--workspace ./maskrcnn-ws \
 	--train-data-roots ./dataset/ \
