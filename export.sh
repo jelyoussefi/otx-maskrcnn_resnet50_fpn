@@ -9,7 +9,7 @@ rm -rf  ./models/FP16/logs ./models/FP16/model.onnx
 
 otx_optimize Custom_Counting_Instance_Segmentation_MaskRCNN_ResNet50 \
 	--workspace ./maskrcnn-ws \
-	--load-weights ./models/FP32/openvino.xml \
+	--load-weights ./models/FP16/openvino.xml \
 	--output ./models/INT8
 	
 rm -rf  ./models/INT8/logs

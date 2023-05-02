@@ -27826,7 +27826,7 @@
 		</conversion_parameters>
 		<legacy_frontend value="False" />
 		<model_info>
-			<confidence_threshold value="0.6250000000000001" />
+			<confidence_threshold value="0.7000000000000001" />
 			<iou_threshold value="0.5" />
 			<labels value="pallets" />
 			<model_type value="MaskRCNN" />

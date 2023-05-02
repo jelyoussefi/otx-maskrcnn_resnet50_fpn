@@ -7,7 +7,7 @@
     },
     "label_groups": [
         {
-            "_id": "6450bb796b5b0495dc18e1e6",
+            "_id": "64513be9b6ff9dd238c45721",
             "name": "labels",
             "label_ids": [
                 "0"
@@ -20,14 +20,14 @@
             "_id": "0",
             "name": "pallets",
             "color": {
-                "red": 243,
-                "green": 84,
-                "blue": 92,
+                "red": 3,
+                "green": 19,
+                "blue": 244,
                 "alpha": 255
             },
             "hotkey": "",
             "domain": "INSTANCE_SEGMENTATION",
-            "creation_date": "2023-05-02T07:27:53.815000",
+            "creation_date": "2023-05-02T16:35:53.050000",
             "is_empty": false,
             "is_anomalous": false
         }
