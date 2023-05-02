@@ -20,7 +20,7 @@ DOCKER_RUN_PARAMS= \
 	-v ${CURRENT_DIR}/models:/workspace/models \
 	-v /tmp/.X11-unix:/tmp/.X11-unix   -v ${HOME}/.Xauthority:/home/root/.Xauthority \
 	-v ${CURRENT_DIR}/.cache:/root/.cache \
-	${DOCKER_IMAGE_NAME}
+	${DOCKER_IMAGE_NAME} 
 	
 	
 
