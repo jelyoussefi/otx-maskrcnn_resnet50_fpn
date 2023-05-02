@@ -26,7 +26,7 @@ RUN pip3 install -e .[full]
 RUN mkdir -p  /workspace/
 WORKDIR /workspace 
 
-COPY build.sh train.sh  optimize.sh export.sh  quantize.sh test.sh /workspace
+COPY build.sh train.sh  optimize.sh export.sh export_nncf.sh  test.sh /workspace
 
 
 
